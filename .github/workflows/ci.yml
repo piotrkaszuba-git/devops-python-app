@@ -19,7 +19,7 @@ jobs:
         run: docker run -d -p 8000:8000 devops-app
 
       - name: Wait for app
-        run: sleep 5
+        run: sleep 10
 
       - name: Test app
         run: curl http://localhost:8000
