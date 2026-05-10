@@ -21,8 +21,17 @@ jobs:
       - name: Wait for app
         run: sleep 10
 
+      - name: Show containers
+        run: docker ps -a
+
       - name: Show logs
-        run: docker logs $(docker ps -q)
+        run: |
+          CONTAINER_ID=$(docker ps -aq)
+          if [ -n "$CONTAINER_ID" ]; then
+            docker logs $CONTAINER_ID
+          else
+            echo "No containers found"
+          fi
 
       - name: Test app
         run: curl http://localhost:8000
