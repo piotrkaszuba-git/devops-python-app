@@ -28,7 +28,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
             return
-
+"""
         conn = psycopg2.connect(
             host=DB_HOST,
             database=DB_NAME,
@@ -45,13 +45,13 @@ class handler(BaseHTTPRequestHandler):
         conn.commit()
         cur.close()
         conn.close()
-
+"""
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         self.wfile.write(f"<h1>Visits: {count}</h1>".encode())
 
-wait_for_db()
+#wait_for_db()
 
 server = HTTPServer(("0.0.0.0", 8000), handler)
 server.serve_forever()
